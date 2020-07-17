@@ -44,7 +44,7 @@ end
 
 Here's what the trace looks like in full, without sampling:
 
-![img_alt](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/o0uvd4Xo/exsampling_1.png)
+![Honeycomb trace with root span, two child spans, and one grandchild span](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/o0uvd4Xo/exsampling_1.png)
 
 ## Example 2: missing root
 
@@ -70,7 +70,9 @@ Honeycomb.start_span(name: 'root') do
 end
 ```
 
-![img_alt](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/GGuogX7A/exsampling_2.png)
+This is what your traces might look like if you're trying to 
+
+![Honeycomb trace with missing root. Child and granchild spans are visible but appear out of order.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/GGuogX7A/exsampling_2.png)
 
 ## Example 3: head-based sampling successfully dropped all spans within trace
 
@@ -154,18 +156,12 @@ end
 
 Note that `child 2` has been dropped:
 
-![img_alt](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/geuwGkB4/exsampling_5.png)
+![Honeycomb trace with root, one child span, and one grandchild. Child 2 is missing.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/geuwGkB4/exsampling_5.png)
 
 ## Example 6: missing root, dropped child
 
 This is the failed version of example 4.
-We set the trace-level field too late, so early spans in the trace have already been sent. 
-Note the timing:
-
-- trace-level field is added to `child 2`
-- `child 2` finishes
-- trace-level field is added to `root`
-- `root` finishes
+We set the trace-level field too late, so early spans in the trace have already been sent.
 
 ```ruby
 Honeycomb.start_span(name: 'root') do
@@ -187,7 +183,14 @@ Honeycomb.start_span(name: 'root') do
 end
 ```
 
-![img_alt](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/04uYjoRD/exsampling_6.png)
+Note the timing:
+
+- trace-level field is added to `child 2`
+- `child 2` finishes
+- trace-level field is added to `root`
+- `root` finishes
+
+![Honeycomb trace with missing root. Child 1 and grandchild spans are visible, but child 2 is missing as well.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/04uYjoRD/exsampling_6.png)
 
 ## Example 7: event-level sampling leads to random orphans
 
@@ -226,4 +229,4 @@ end
 
 Since the `sample_hook` isn't trace-aware, we're actually keeping 50% of *events*, leading to random orphans:
 
-![img_alt](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/Wnubv18d/exsampling_7.png)
+![Honeycomb trace with missing root. The only child span is child 2](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/Wnubv18d/exsampling_7.png)
