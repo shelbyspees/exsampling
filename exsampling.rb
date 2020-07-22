@@ -17,7 +17,7 @@ Honeycomb.configure do |config|
 end
 
 def trace_url
-  'https://ui.honeycomb.io/novalogic/datasets/exsampling/trace' \
+  "https://ui.honeycomb.io/#{ENV['HONEYCOMB_TEAM']}/datasets/exsampling/trace" \
     "?trace_id=#{Honeycomb.current_trace&.id}" \
     "&trace_start_ts=#{Time.now.to_i - 60}" \
     "&trace_end_ts=#{Time.now.to_i + 60}"
