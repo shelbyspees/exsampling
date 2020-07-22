@@ -18,10 +18,10 @@ Honeycomb.configure do |config|
 
   config.sample_hook do |fields|
     if rand < 0.5
-      puts "Drop event: #{JSON.pretty_generate(fields)}"
+      puts "Drop event: #{JSON.pretty_generate(fields)}\n\n"
       [false, 2]
     else
-      puts "Send event: #{JSON.pretty_generate(fields)}"
+      puts "Send event: #{JSON.pretty_generate(fields)}\n\n"
       [true, 2]
     end
   end

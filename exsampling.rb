@@ -7,12 +7,10 @@ Honeycomb.configure do |config|
 
   config.sample_hook do |fields|
     if fields['app.drop']
-      puts "Drop event: #{JSON.pretty_generate(fields)}"
-      puts
+      puts "Drop event: #{JSON.pretty_generate(fields)}\n\n"
       [false, 0]
     else
-      puts "Send event: #{JSON.pretty_generate(fields)}"
-      puts
+      puts "Send event: #{JSON.pretty_generate(fields)}\n\n"
       [true, 1]
     end
   end

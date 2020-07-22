@@ -25,10 +25,10 @@ module Sampler
     rate = 2
 
     if should_sample(rate, fields['trace.trace_id'])
-      puts "Send event: #{JSON.pretty_generate(fields)}"
+      puts "Send event: #{JSON.pretty_generate(fields)}\n\n"
       [true, rate]
     else
-      puts "Drop event: #{JSON.pretty_generate(fields)}"
+      puts "Drop event: #{JSON.pretty_generate(fields)}\n\n"
       [false, rate]
     end
   end
