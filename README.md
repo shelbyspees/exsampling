@@ -16,6 +16,18 @@ Pass your Honeycomb information in via environment variables and run the script 
 $ HONEYCOMB_WRITE_KEY=<key> HONEYCOMB_TEAM=<team> ruby exsampling.rb
 ```
 
-## TODO
+## Discussion
 
-Update with new examples
+### [Without sampling](/examples/without_sampling.rb)
+
+### [Head-based without propagation](/examples/head_based_without_propagation.rb)
+
+### [Head-based with propagation](/examples/head_based_with_propagation.rb)
+
+### [Tail-based before anything has been sent](/examples/tail_based_before_anything_has_been_sent.rb)
+
+### [Tail-based after something has been sent](/examples/tail_based_after_something_has_been_sent.rb)
+
+### [Nondeterministic sampling](/examples/nondeterministic_sampling.rb)
+
+### [Deterministic sampling](/examples/deterministic_sampling.rb)
