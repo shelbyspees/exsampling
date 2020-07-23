@@ -73,7 +73,7 @@ Either we see the trace in full:
 
 ![trace with all spans included. there's a root span with two children. child 1 has a grandchild span.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/yAuYwWGj/without_sampling.png)
 
-Or our `sample_hook` will dropp the trace in full:
+Or our `sample_hook` will drop the trace in full:
 
 ![error message reading: We were unable to find any spans for this trace. Check if the trace ID or start and end timestamps are incorrect.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/geuw5ZYd/missing_trace.png)
 
