@@ -1,6 +1,6 @@
 puts <<-MSG
 
-In order to drop a entire traces at a certain rate, you should use
+In order to drop entire traces at a certain rate, you should use
 Honeycomb::DeterministicSampler. This uses a hash function on the trace ID to
 make a deterministic but well-distributed choice as to whether the event should
 be dropped or not at the given rate.
