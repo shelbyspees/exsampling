@@ -65,3 +65,15 @@ Note that `child 2` shows up in the wrong spot. The code didn't change--Honeycom
 ### Deterministic sampling 
 [/examples/deterministic_sampling.rb](/examples/deterministic_sampling.rb)
 
+This example extends the [Ruby Beeline's](https://docs.honeycomb.io/getting-data-in/ruby/beeline/) `DeterministicSampler` module so that we can lean on the Beeline's implementation of `should_sample`. The `should_sample` method takes in a rate and a value and returns a boolean, with consistent inputs leading to consistent return values.
+
+This consistency is what allows us to do trace-aware sampling. By passing in the `trace.trace_id`, we get a consistent result for all the spans within the same trace.
+
+Either we see the trace in full:
+
+![trace with all spans included. there's a root span with two children. child 1 has a grandchild span.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/yAuYwWGj/without_sampling.png)
+
+Or our `sample_hook` will dropp the trace in full:
+
+![error message reading: We were unable to find any spans for this trace. Check if the trace ID or start and end timestamps are incorrect.](https://p-81fa8j.b1.n0.cdn.getcloudapp.com/items/geuw5ZYd/missing_trace.png)
+
